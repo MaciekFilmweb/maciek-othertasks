@@ -3,6 +3,7 @@ package maciek.othertasks.bracketvalidator;
 import java.util.Deque;
 import java.util.LinkedList;
 
+import com.google.common.base.Objects;
 import com.google.common.base.Preconditions;
 
 public class BracketValidator {
@@ -19,18 +20,12 @@ public class BracketValidator {
 				bracketStack.push(ch);
 				break;
 			case ')':
-				if (bracketStack.isEmpty()) {
-					return false;
-				}
-				if (bracketStack.pop() != '(') {
+				if (!Objects.equal('(', bracketStack.pollFirst())) {
 					return false;
 				}
 				break;
 			case ']':
-				if (bracketStack.isEmpty()) {
-					return false;
-				}
-				if (bracketStack.pop() != '[') {
+				if (!Objects.equal('[', bracketStack.pollFirst())) {
 					return false;
 				}
 				break;
